@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	//shape polygon
 	var polygon = L.polygon([
-	    [-1, -1],
-	    [1, -1],
-	    [1, 1],
-	    [-1, 1],
+	    [32.3333, -64.75],
+	    [18.4663300, -66.1057200],
+	    [25.7738889, -80.1938889],
+
 	]);
-	polygon.bindPopup("The polygon.");
+	polygon.bindPopup("Le triangle de Bermudes");
 	polygon.addTo(map);
 
 	/*
