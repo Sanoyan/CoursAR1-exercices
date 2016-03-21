@@ -12,11 +12,6 @@ document.addEventListener('DOMContentLoaded', function(){
 	var tileLayer = L.tileLayer(mapPatternUrl);
 	tileLayer.addTo(map);
 
-	//marker
-	var marker = L.marker([0, 0]);
-	marker.bindPopup("The marker.");
-	marker.addTo(map);
-
 	//shape circle
 	var circle = L.circle([0, 0], 500000);
 	circle.bindPopup("The circle.");
@@ -38,5 +33,23 @@ document.addEventListener('DOMContentLoaded', function(){
 	}
 	map.on('click', onMapClick);
 	*/
+	//marker
+	var marker = L.marker([0, 0]);
+	marker.bindPopup("Me.");
+	marker.addTo(map);
 
+	function processPosition(event){
+		status.innerHTML = "Lat : " + event.coords.latitude + "° Long : " + event.coords.longitude + "° Precision : " + event.coords.accuracy + "m.";
+		marker.setLatLng( [event.coords.latitude, event.coords.longitude] );
+
+	}
+
+	function errorPosition(){
+		status.innerHTML = "No position.";
+		marker.setLatLng( [0,0] );
+	}
+
+	//location notifications
+	var options = {"enableHighAccuracy": true, "maximumAge" : 0, "timeout" : Infinity};
+	navigator.geolocation.watchPosition( processPosition, errorPosition, options );
 });
